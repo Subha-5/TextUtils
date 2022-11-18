@@ -7,20 +7,24 @@ export default function Textform(props) {
         // setText("You have clicked on handleUpClick");
         let newText = text.toUpperCase()
         setText(newText)
+        props.showAlert("Converted to Uppercase!","success")
     }
     const handleLowClick = () => {
         let newText = text.toLowerCase()
         setText(newText)
+        props.showAlert("Converted to Lowercase!","success")
     }
     const handleClearClick = () => {
         let newText = ''
         setText(newText)
+        props.showAlert("Text cleared!","success")
     }
     const handleCopy = ()=> {
         var copyText = document.getElementById("myBox")
         console.log(copyText)
         copyText.select();
         navigator.clipboard.writeText(copyText.value)
+        props.showAlert("Copied to clipboard!","success")
     }
     const handleOnChange = (event) => {
         // console.log("On change");
@@ -44,7 +48,7 @@ export default function Textform(props) {
         </div>
         <div className="container mt-4" style={{color: props.mode==='dark'?'white':'black'}}>
             <h3>Your text summary</h3>
-            <p>{text.split(" ").length} words and {text.length} characters</p>
+            <p>{text==='' ? 0 :text.split(" ").length} words and {text.length} characters</p>
             <p>{0.008 * text.split(" ").length } minutes read</p>
             <h3>Preview</h3>
             <p>{text.length>0?text:"Enter something in the textbox to preview it here."}</p>
